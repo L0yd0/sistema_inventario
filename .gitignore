@@ -1,12 +1,11 @@
+# Archivo de credenciales
+.env
 # Entornos virtuales
 .venv/
 venv/
 .virtualenvs/
 Pipfile.lock
 
-# Archivos de caché de Python
+# Archivos de caché
 __pycache__/
 *.pyc
-
-# Configuración local de VS Code
-.vscode/

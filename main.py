@@ -1,8 +1,14 @@
-import sys 
+import os
+import sys
+from dotenv import load_dotenv
 from db import conectar_bd
 import services as srv
 
-uri_atlas = "mongodb+srv://ricardovargas120717:1234@cluster0.tvziskr.mongodb.net/inventario_db?retryWrites=true&w=majority&appName=Cluster0z"
+# Cargar las variables de entorno del archivo .env
+load_dotenv()
+
+# Obtener la URI desde las variables de entorno
+uri_atlas = os.getenv("MONGO_URI")
 
 def menu_usuarios():
     while True:
@@ -124,8 +130,11 @@ def menu_articulos():
             print("Opción no válida. Intente de nuevo.")
 
 def main():
-    print("Iniciando sistema de inventario")
+    print("Iniciando sistema de inventario...")
 
+    if not uri_atlas:
+        print("Error: No se encontró la variable MONGO_URI en el archivo .env")
+        sys.exit(1)
     try:
         conectar_bd(uri_atlas)
     except Exception:
